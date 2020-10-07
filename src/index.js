@@ -9,6 +9,7 @@ let timerIntervals = [0, 0];
 let startTimes = [0, 0];
 let remainingTimes = [0, 0];
 let countdowns = [false, false];
+let mute = true;
 
 function stopTimer(obj) {
   timeoverAudio.pause();
@@ -121,7 +122,9 @@ function tick(id) {
         startTimes[id] = Date.now() + remainingTime;
         var countdownStr = ('00' + countdown).slice(-2);
         btn.innerText = '0:00:' + countdownStr;
-        countdownAudio.play();
+        if (!mute) {
+          countdownAudio.play();
+        }
         alertSeconds.forEach(alertSecond => {
           if (alertSecond < remainingTime) {
             nextAlerts[id] = alertSecond;
@@ -132,8 +135,10 @@ function tick(id) {
           timeoverAudio.pause();
           clearInterval(timerIntervals[id]);
         } else {
-          timeoverAudio.loop = true;
-          timeoverAudio.play();
+          if (!mute) {
+            timeoverAudio.loop = true;
+            timeoverAudio.play();
+          }
         }
         btn.innerText = '0:00:00';  // timeover
       }
@@ -142,14 +147,18 @@ function tick(id) {
         timeoverAudio.pause();
         clearInterval(timerIntervals[id]);
       } else {
-        timeoverAudio.loop = true;
-        timeoverAudio.play();
+        if (!mute) {
+          timeoverAudio.loop = true;
+          timeoverAudio.play();
+        }
       }
       btn.innerText = '0:00:00';  // timeover
     }
   } else {
     if (remainingTime < nextAlerts[id]) {
-      alertAudio.play();
+      if (!mute) {
+        alertAudio.play();
+      }
       var idx = alertSeconds.indexOf(nextAlerts[id]);
       nextAlerts[id] = alertSeconds[idx-1];
     }
@@ -224,9 +233,11 @@ function toggleBGM() {
     timeoverAudio.play();
     countdownAudio.play();
     alertAudio.play();
+    mute = false;
   } else {
     button.classList.add('disabled');
     timeoverAudio.pause();
+    mute = true;
   }
 }
 noSleep.enable();
