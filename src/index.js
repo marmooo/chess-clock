@@ -56,11 +56,9 @@ function startTimer(obj) {
     var inputs = header.getElementsByTagName('input');
     var countdown = inputs[3].value || 0;
     startTimes[altId] = Date.now() + countdown * 1000;
-    alertSeconds.forEach(alertSecond => {
-      if (countdown < alertSecond) {
-        nextAlerts[altId] = alertSecond;
-      }
-    });
+    var countSec = (countdown - 1) * 1000;
+    var alertSec = alertSeconds.find(alertSec => countSec < alertSec);
+    nextAlerts[altId] = alertSec;
   } else {
     startTimes[altId] = Date.now() + remainingTimes[altId];
   }
@@ -125,11 +123,8 @@ function tick(id) {
         if (!mute) {
           countdownAudio.play();
         }
-        alertSeconds.forEach(alertSecond => {
-          if (alertSecond < remainingTime) {
-            nextAlerts[id] = alertSecond;
-          }
-        });
+        var alertSec = alertSeconds.find(alertSec => alertSecond < remainingTime);
+        nextAlerts[id] = alertSec;
       } else {
         if (remainingTime < -5000) {  // 5sec over
           timeoverAudio.pause();
