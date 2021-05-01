@@ -56,9 +56,9 @@ function startTimer(obj) {
     var inputs = header.getElementsByTagName('input');
     var countdown = inputs[3].value || 0;
     startTimes[altId] = Date.now() + countdown * 1000;
-    var countSec = (countdown - 1) * 1000;
-    var alertSec = alertSeconds.find(alertSec => countSec < alertSec);
-    nextAlerts[altId] = alertSec;
+    var countSecond = (countdown - 1) * 1000;
+    var alertSecond = alertSeconds.find(alertSecond => countSecond < alertSecond);
+    nextAlerts[altId] = alertSecond;
   } else {
     startTimes[altId] = Date.now() + remainingTimes[altId];
   }
