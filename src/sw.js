@@ -1,12 +1,12 @@
-var CACHE_NAME = '2020-11-23 12:30';
+var CACHE_NAME = '2021-05-01 17:40';
 var urlsToCache = [
   '/chess-clock/',
   '/chess-clock/mp3/warning1.mp3',
   '/chess-clock/mp3/menu1.mp3',
   '/chess-clock/mp3/decision3.mp3',
   '/chess-clock/index.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css',
-  'https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.11.0/NoSleep.min.js',
+  'https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css',
+  'https://cdn.jsdelivr.net/npm/nosleep.js@0.12.0/dist/NoSleep.min.js',
 ];
 
 self.addEventListener('install', function(event) {
