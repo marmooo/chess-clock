@@ -13,18 +13,10 @@ let mute = true;
 
 function stopTimer(obj) {
   timeoverAudio.pause();
-  var id;
-  if (timerIntervals[0]) {
-    clearInterval(timerIntervals[0]);
-    id = 0;
-  }
-  if (timerIntervals[1]) {
-    clearInterval(timerIntervals[1]);
-    id = 1;
-  }
+  clearInterval(timerIntervals[0]);
+  clearInterval(timerIntervals[1]);
   obj.classList.add('d-none');
   var restartButton = document.getElementById('restartButton');
-  restartButton.dataset.id = id;
   restartButton.classList.remove('d-none');
 }
 
