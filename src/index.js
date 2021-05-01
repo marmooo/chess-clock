@@ -123,8 +123,8 @@ function tick(id) {
         if (!mute) {
           countdownAudio.play();
         }
-        var alertSec = alertSeconds.find(alertSec => alertSecond < remainingTime);
-        nextAlerts[id] = alertSec;
+        var alertSecond = alertSeconds.find(alertSecond => alertSecond < remainingTime);
+        nextAlerts[id] = alertSecond;
       } else {
         if (remainingTime < -5000) {  // 5sec over
           timeoverAudio.pause();
