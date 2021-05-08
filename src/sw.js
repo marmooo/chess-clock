@@ -1,4 +1,4 @@
-var CACHE_NAME = '2021-05-01 17:40';
+var CACHE_NAME = '2021-05-04 09:00';
 var urlsToCache = [
   '/chess-clock/',
   '/chess-clock/mp3/warning1.mp3',

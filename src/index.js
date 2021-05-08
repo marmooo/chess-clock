@@ -44,7 +44,7 @@ function startTimer(obj) {
   }
   clearInterval(timerIntervals[id]);
   if (countdowns[altId]) {
-    var header = document.getElementById('timerHeader' + id);
+    var header = document.getElementById('timerHeader' + altId);
     var inputs = header.getElementsByTagName('input');
     var countdown = inputs[3].value || 0;
     startTimes[altId] = Date.now() + countdown * 1000;
@@ -90,10 +90,9 @@ function resetTimerBase(id) {
   resizeFontSize(btn);
 }
 
-function resetTimer(obj) {
+function resetTimer(id) {
   timeoverAudio.pause();
-  resetTimerBase(0);
-  resetTimerBase(1);
+  resetTimerBase(id);
 }
 
 function tick(id) {
