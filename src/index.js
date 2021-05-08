@@ -32,6 +32,8 @@ function restartTimer(obj) {
 }
 
 function startTimer(obj) {
+  document.getElementById('stopButton').classList.remove('d-none');
+  document.getElementById('restartButton').classList.add('d-none');
   var id = parseInt(obj.getAttribute('id').slice(-1));
   obj.setAttribute('disabled', 'true');
   var altId;
