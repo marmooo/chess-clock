@@ -16,8 +16,13 @@ function stopTimer(obj) {
   clearInterval(timerIntervals[0]);
   clearInterval(timerIntervals[1]);
   obj.classList.add('d-none');
-  var restartButton = document.getElementById('restartButton');
+  const restartButton = document.getElementById('restartButton');
   restartButton.classList.remove('d-none');
+  if (document.getElementById('btn0').disabled) {
+    restartButton.dataset.id = 1;
+  } else {
+    restartButton.dataset.id = 0;
+  }
 }
 
 function restartTimer(obj) {
