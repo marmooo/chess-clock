@@ -99,7 +99,12 @@ function resetTimerBase(id) {
 
 function resetTimer(id) {
   timeoverAudio.pause();
-  resetTimerBase(id);
+  if (id) {
+    resetTimerBase(id);
+  } else {
+    resetTimerBase(0);
+    resetTimerBase(1);
+  }
 }
 
 function tick(id) {
