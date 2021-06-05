@@ -37,6 +37,7 @@ function restartTimer(obj) {
 }
 
 function startTimer(obj) {
+  window.scroll(0, 0);
   document.getElementById('stopButton').classList.remove('d-none');
   document.getElementById('restartButton').classList.add('d-none');
   var id = parseInt(obj.getAttribute('id').slice(-1));
