@@ -98,10 +98,10 @@ function resetTimerBase(id) {
   if (hour == 0 && min == 0 && sec == 0 && countdown != 0) {
     countdowns[id] = true;
     const countdownStr = ("00" + countdown).slice(-2);
-    btn.innerText = hour + ":" + minStr + ":" + countdownStr;
+    btn.textContent = hour + ":" + minStr + ":" + countdownStr;
   } else {
     countdowns[id] = false;
-    btn.innerText = hour + ":" + minStr + ":" + secStr;
+    btn.textContent = hour + ":" + minStr + ":" + secStr;
   }
   const remainingTime = hour * 3600000 + min * 60000 + sec * 1000;
   remainingTimes[id] = remainingTime;
@@ -137,7 +137,7 @@ function tick(id) {
         remainingTimes[id] = remainingTime;
         startTimes[id] = Date.now() + remainingTime;
         const countdownStr = ("00" + countdown).slice(-2);
-        btn.innerText = "0:00:" + countdownStr;
+        btn.textContent = "0:00:" + countdownStr;
         if (!mute) {
           countdownAudio.play();
         }
@@ -155,7 +155,7 @@ function tick(id) {
             timeoverAudio.play();
           }
         }
-        btn.innerText = "0:00:00"; // timeover
+        btn.textContent = "0:00:00"; // timeover
       }
     } else {
       if (remainingTime < -5000) { // 5sec over
@@ -167,7 +167,7 @@ function tick(id) {
           timeoverAudio.play();
         }
       }
-      btn.innerText = "0:00:00"; // timeover
+      btn.textContent = "0:00:00"; // timeover
     }
   } else {
     if (remainingTime < nextAlerts[id]) {
@@ -183,7 +183,7 @@ function tick(id) {
     const sec = Math.floor(remainingTime % 60000 / 1000);
     const minStr = ("00" + min).slice(-2);
     const secStr = ("00" + sec).slice(-2);
-    btn.innerText = hour + ":" + minStr + ":" + secStr;
+    btn.textContent = hour + ":" + minStr + ":" + secStr;
   }
 }
 
@@ -230,7 +230,7 @@ function resizeFontSize(node) {
   const fontSize = parseFloat(style.fontSize);
   const lineHeight = parseFloat(style.lineHeight) / fontSize;
   const nodeRect = getNodeRect();
-  const textRect = getTextRect(node.innerText, fontSize, font, lineHeight);
+  const textRect = getTextRect(node.textContent, fontSize, font, lineHeight);
   const paddingRect = getPaddingRect(style);
 
   // https://stackoverflow.com/questions/46653569/
