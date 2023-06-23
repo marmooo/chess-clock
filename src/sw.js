@@ -1,11 +1,10 @@
-var CACHE_NAME = "2023-03-02 09:45";
+var CACHE_NAME = "2023-06-23 00:00";
 var urlsToCache = [
   "/chess-clock/",
   "/chess-clock/mp3/warning1.mp3",
   "/chess-clock/mp3/menu1.mp3",
   "/chess-clock/mp3/decision3.mp3",
   "/chess-clock/index.js",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css",
   "https://cdn.jsdelivr.net/npm/nosleep.js@0.12.0/dist/NoSleep.min.js",
 ];
 
