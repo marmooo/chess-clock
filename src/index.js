@@ -44,7 +44,7 @@ function restartTimer() {
   this.classList.add("d-none");
   document.getElementById("stopButton").classList.remove("d-none");
   startTimes[id] = Date.now() + remainingTimes[id];
-  timerIntervals[id] = setInterval(function () {
+  timerIntervals[id] = setInterval(() => {
     tick(id);
   }, 50);
 }
@@ -77,7 +77,7 @@ function startTimer() {
   } else {
     startTimes[altId] = Date.now() + remainingTimes[altId];
   }
-  timerIntervals[altId] = setInterval(function () {
+  timerIntervals[altId] = setInterval(() => {
     tick(altId);
   }, 50);
 }
@@ -266,7 +266,7 @@ const btn0 = document.getElementById("btn0");
 const btn1 = document.getElementById("btn1");
 resizeFontSize(btn0);
 resizeFontSize(btn1);
-window.addEventListener("resize", function () {
+window.addEventListener("resize", () => {
   resizeFontSize(btn0);
   resizeFontSize(btn1);
 });
