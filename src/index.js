@@ -50,7 +50,7 @@ function restartTimer() {
 }
 
 function startTimer() {
-  window.scroll(0, 0);
+  globalThis.scroll(0, 0);
   document.getElementById("stopButton").classList.remove("d-none");
   document.getElementById("restartButton").classList.add("d-none");
   const id = parseInt(this.getAttribute("id").slice(-1));
@@ -266,7 +266,7 @@ const btn0 = document.getElementById("btn0");
 const btn1 = document.getElementById("btn1");
 resizeFontSize(btn0);
 resizeFontSize(btn1);
-window.addEventListener("resize", () => {
+globalThis.addEventListener("resize", () => {
   resizeFontSize(btn0);
   resizeFontSize(btn1);
 });
