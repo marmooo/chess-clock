@@ -24,11 +24,11 @@ const remainingTimes = [0, 0];
 const countdowns = [false, false];
 let mute = true;
 
-function stopTimer() {
+function stopTimer(event) {
   timeoverAudio.pause();
   clearInterval(timerIntervals[0]);
   clearInterval(timerIntervals[1]);
-  this.classList.add("d-none");
+  event.target.classList.add("d-none");
   const restartButton = document.getElementById("restartButton");
   restartButton.classList.remove("d-none");
   if (document.getElementById("btn0").disabled) {
@@ -38,10 +38,10 @@ function stopTimer() {
   }
 }
 
-function restartTimer() {
+function restartTimer(event) {
   timeoverAudio.pause();
-  const id = parseInt(this.dataset.id);
-  this.classList.add("d-none");
+  const id = parseInt(event.target.dataset.id);
+  event.target.classList.add("d-none");
   document.getElementById("stopButton").classList.remove("d-none");
   startTimes[id] = Date.now() + remainingTimes[id];
   timerIntervals[id] = setInterval(() => {
@@ -49,12 +49,12 @@ function restartTimer() {
   }, 50);
 }
 
-function startTimer() {
+function startTimer(event) {
   globalThis.scroll(0, 0);
   document.getElementById("stopButton").classList.remove("d-none");
   document.getElementById("restartButton").classList.add("d-none");
-  const id = parseInt(this.getAttribute("id").slice(-1));
-  this.setAttribute("disabled", "true");
+  const id = parseInt(event.target.getAttribute("id").slice(-1));
+  event.target.setAttribute("disabled", "true");
   let altId;
   if (id == 0) {
     document.getElementById("btn1").removeAttribute("disabled");
@@ -65,7 +65,7 @@ function startTimer() {
   }
   clearInterval(timerIntervals[id]);
   if (countdowns[altId]) {
-    const header = document.getElementById("timerHeader" + altId);
+    const header = document.getElementById(`timerHeader${altId}`);
     const inputs = header.getElementsByTagName("input");
     const countdown = inputs[3].value || 0;
     startTimes[altId] = Date.now() + countdown * 1000;
@@ -86,7 +86,7 @@ function resetTimerBase(id) {
   if (timerIntervals[id]) {
     clearInterval(timerIntervals[id]);
   }
-  const header = document.getElementById("timerHeader" + id);
+  const header = document.getElementById(`timerHeader${id}`);
   const inputs = header.getElementsByTagName("input");
   const hour = inputs[0].value || 0;
   const min = inputs[1].value || 0;
@@ -127,7 +127,7 @@ function tick(id) {
   let remainingTime = startTimes[id] - Date.now();
   remainingTimes[id] = remainingTime;
   if (remainingTime < 0) { // time over
-    const header = document.getElementById("timerHeader" + id);
+    const header = document.getElementById(`timerHeader${id}`);
     const inputs = header.getElementsByTagName("input");
     const countdown = inputs[3].value || 0;
     if (0 < countdown) { // countdown mode
@@ -246,16 +246,16 @@ function resizeFontSize(node) {
   }
 }
 
-function toggleBGM() {
-  if (this.classList.contains("disabled")) {
-    this.classList.remove("disabled");
+function toggleBGM(event) {
+  if (event.target.classList.contains("disabled")) {
+    event.target.classList.remove("disabled");
     timeoverAudio.loop = false;
     timeoverAudio.play();
     countdownAudio.play();
     alertAudio.play();
     mute = false;
   } else {
-    this.classList.add("disabled");
+    event.target.classList.add("disabled");
     timeoverAudio.pause();
     mute = true;
   }
@@ -279,15 +279,9 @@ document.getElementById("resetButton").onclick = () => {
   resetTimer(0);
   resetTimer(1);
 };
-[...document.getElementById("timerHeader0").getElementsByTagName("input")]
-  .forEach((input) => {
-    input.onchange = () => {
-      resetTimer(0);
-    };
+for (let i = 0; i <= 1; i++) {
+  const header = document.getElementById(`timerHeader${i}`);
+  [...header.getElementsByTagName("input")].forEach((input) => {
+    input.onchange = () => resetTimer(i);
   });
-[...document.getElementById("timerHeader1").getElementsByTagName("input")]
-  .forEach((input) => {
-    input.onchange = () => {
-      resetTimer(1);
-    };
-  });
+}
