@@ -1,11 +1,10 @@
-const CACHE_NAME = "2024-03-18 00:30";
+const CACHE_NAME = "2024-07-23 08:30";
 const urlsToCache = [
   "/chess-clock/",
   "/chess-clock/mp3/warning1.mp3",
   "/chess-clock/mp3/menu1.mp3",
   "/chess-clock/mp3/decision3.mp3",
   "/chess-clock/index.js",
-  "https://cdn.jsdelivr.net/npm/nosleep.js@0.12.0/dist/NoSleep.min.js",
 ];
 
 self.addEventListener("install", (event) => {
