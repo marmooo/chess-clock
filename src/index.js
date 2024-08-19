@@ -30,7 +30,7 @@ function stopTimer(event) {
   timeoverAudio.pause();
   clearInterval(timerIntervals[0]);
   clearInterval(timerIntervals[1]);
-  event.target.classList.add("d-none");
+  event.currentTarget.classList.add("d-none");
   const restartButton = document.getElementById("restartButton");
   restartButton.classList.remove("d-none");
   if (document.getElementById("btn0").disabled) {
@@ -41,9 +41,10 @@ function stopTimer(event) {
 }
 
 function restartTimer(event) {
+  const button = event.currentTarget;
   timeoverAudio.pause();
-  const id = parseInt(event.target.dataset.id);
-  event.target.classList.add("d-none");
+  const id = parseInt(button.dataset.id);
+  button.classList.add("d-none");
   document.getElementById("stopButton").classList.remove("d-none");
   startTimes[id] = Date.now() + remainingTimes[id];
   timerIntervals[id] = setInterval(() => {
@@ -52,11 +53,12 @@ function restartTimer(event) {
 }
 
 function startTimer(event) {
+  const button = event.currentTarget;
   globalThis.scroll(0, 0);
   document.getElementById("stopButton").classList.remove("d-none");
   document.getElementById("restartButton").classList.add("d-none");
-  const id = parseInt(event.target.getAttribute("id").slice(-1));
-  event.target.setAttribute("disabled", "true");
+  const id = parseInt(button.getAttribute("id").slice(-1));
+  button.setAttribute("disabled", "true");
   let altId;
   if (id == 0) {
     document.getElementById("btn1").removeAttribute("disabled");
@@ -249,15 +251,16 @@ function resizeFontSize(node) {
 }
 
 function toggleBGM(event) {
-  if (event.target.classList.contains("disabled")) {
-    event.target.classList.remove("disabled");
+  const button = event.currentTarget;
+  if (button.classList.contains("disabled")) {
+    button.classList.remove("disabled");
     timeoverAudio.loop = false;
     timeoverAudio.play();
     countdownAudio.play();
     alertAudio.play();
     mute = false;
   } else {
-    event.target.classList.add("disabled");
+    button.classList.add("disabled");
     timeoverAudio.pause();
     mute = true;
   }
